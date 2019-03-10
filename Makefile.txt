@@ -1,0 +1,20 @@
+SFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+POST = -Wall -Werror -ansi -pedantic -std=c++0x
+CC = g++ -c
+GG = g++
+OBJECTS = main.o nbody.o
+CLIENTS = app_maker
+
+all: $(CLIENTS) $(OBJECTS)
+
+main.o: main.cpp
+	$(CC) main.cpp $(POST)
+
+nbody.o: nbody.cpp nbody.hpp
+	$(CC) nbody.cpp $(POST)
+
+app_maker: $(OBJECTS)
+	$(GG) $(OBJECTS) -o Nbody $(SFLAGS)
+
+clean:
+	rm $(OBJECTS) Nbody
